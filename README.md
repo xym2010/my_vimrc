@@ -1,1 +1,2 @@
-# my_vimrc
+#### my_vimrc ####
+- save xym vim config
