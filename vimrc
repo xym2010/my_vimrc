@@ -272,23 +272,18 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 "添加或更新头
 map <F4> :call TitleDet()<cr>'s
 autocmd BufNewFile *.py :call TitleDet()
+autocmd FileType python autocmd BufWritePre <buffer> :call TitleDet() 
 function AddTitle()
     call append(0,"#! /usr/bin/env python")
     call append(1,"# -*- coding: utf-8 -*-")
-    call append(2,"# vim:fenc=utf-8 ")
+    call append(2,"# vim:fenc=utf-8")
     call append(3,"#  Copyright © XYM")
     call append(4,"# Last modified: ".strftime("%Y-%m-%d %H:%M:%S"))
     call append(5,"")
 endf
 "更新最近修改时间和文件名
 function UpdateTitle()
-    normal m'
-    execute '/# *Last modified:/s@:.*$@\=strftime(":\t%Y-%m-%d %H:%M")@'
-    normal ''
-    normal mk
-    execute '/# *Filename:/s@:.*$@\=":\t\t".expand("%:t")@'
-    execute "noh"
-    normal 'k
+    execute '/# *Last modified:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M:%S")@'
 endfunction
 "判断前10行代码里面，是否有Last modified这个单词，
 "如果没有的话，代表没有添加过作者信息，需要新添加；
@@ -296,7 +291,7 @@ endfunction
 function TitleDet()
     let n=1
     "默认为添加
-    while n < 10
+    while n < 6
         let line = getline(n)
         if line =~ '^\#\s*\S*Last\smodified:\S*.*$'
             call UpdateTitle()
@@ -306,3 +301,5 @@ function TitleDet()
     endwhile
     call AddTitle()
 endfunction
+
+let python_highlight_all = 1

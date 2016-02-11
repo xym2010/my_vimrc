@@ -32,6 +32,7 @@ Bundle "bling/vim-airline"
 Bundle 'yssource/python.vim'
 Bundle 'python_match.vim'
 Bundle 'pythoncomplete'
+Bundle 'hdima/python-syntax'
 
 " js 推荐：****
 Bundle 'elzr/vim-json'
