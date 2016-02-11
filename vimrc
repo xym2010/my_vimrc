@@ -285,7 +285,7 @@ endf
 function UpdateTitle()
     execute '/# *Last modified:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M:%S")@'
 endfunction
-"判断前10行代码里面，是否有Last modified这个单词，
+"判断前6行代码里面，是否有Last modified这个单词，
 "如果没有的话，代表没有添加过作者信息，需要新添加；
 "如果有的话，那么只需要更新即可
 function TitleDet()
