@@ -1,5 +1,9 @@
 " 相关vim脚本文档 http://vimdoc.sourceforge.net
 " 相关好文 https://github.com/yangyangwithgnu/use_vim_as_ide
+" 导入vim插件管理文件
+if filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
+endif
 
 " 基本配置
 set nocompatible "不要vim模仿vi模式，建议设置，否则会有很多不兼容的问题
@@ -18,9 +22,9 @@ set hlsearch      " 高亮搜索项
 set ignorecase    " 无视大小写 
 set smartcase     " 如果有大写就区别大小写匹配 
 set laststatus=2  " 总是显示状态栏 
-" set autowrite     " 切换文件自动保存 
+" set autowrite     " 切换文件自动保存 https://github.com/terryma/vim-multiple-cursors/raw/master/assets/example1.gif?raw=true
 set shortmess=atI"  " 关闭欢迎页面
-set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+set viewoptions=cursor,folds,slash,unix " viminfo 记录的内容
 set virtualedit=onemore             " 光标可以移到当行最后一个字符之后 
 set hidden                          " 切换文件不保存，隐藏 
 "set confirm       " 退出前验证
@@ -34,11 +38,13 @@ set scrolloff=3   " 光标移动至少保留行数
 
 " 格式
 set nowrap        " 取消自动折行
-set autoindent    " 自动缩进 
-set shiftwidth=4  " 缩进位宽=4个空格位
-set expandtab     " tab由空格表示
+"set smarttab
 set tabstop=4     " tab=4空格 
 set softtabstop=4 " 回退可以删除缩进 
+set shiftwidth=4  " 缩进位宽=4个空格位
+set autoindent    " 自动缩进 
+set expandtab     " tab由空格表示
+
 set nojoinspaces  " 用J合并两行用一个空格隔开
 set splitright    " 用vsplit新建窗口，让新的放右边
 set splitbelow    " 用split新建窗口，让新的放下面
@@ -49,27 +55,12 @@ set iskeyword-=-  " 让'-' 作为单词分割符
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " 空格等无效字符显示
 set textwidth=80  " 内容宽度
 set fileencodings=utf-8,gb18030,gbk,big5 " 文件编码
-" 文件保存时处理首尾空格，^M字符
-let g:keep_trailing_whitespace = 1
-function! StripTrailingWhitespace()
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
-endfunction
-autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> if exists('g:keep_trailing_whitespace') | call StripTrailingWhitespace() | endif 
 
 " 开启新的buffer时，自动转到对应文件目录
 let g:autochdir = 1
 if exists('g:autochdir')
     autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 endif
-
-" 恢复光标最后编辑位置
-au BufWinLeave *.py,*.c,*.cpp,*.css,*.html,*.js,*php mkview
-au BufWinEnter *.py,*.c,*.cpp,*.css,*.html,*.js,*php silent loadview
 
 " 设置u的返回步数限制
 if has('persistent_undo')
@@ -142,11 +133,6 @@ set gfw=幼圆:h10:cGB2312
 
 " 语法高亮
 syntax on
-
-" 导入vim插件管理文件
-if filereadable(expand("~/.vimrc.bundles"))
-	source ~/.vimrc.bundles
-endif
 
 " 缩进和md文件
 filetype plugin indent on " 自动根据类型启动对应插件，缩进开启
@@ -271,35 +257,14 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 "进行版权声明的设置
 "添加或更新头
 map <F4> :call TitleDet()<cr>'s
-autocmd BufNewFile *.py :call TitleDet()
-autocmd FileType python autocmd BufWritePre <buffer> :call TitleDet() 
+autocmd BufNewFile *.py :call AddTitle()
 function AddTitle()
     call append(0,"#! /usr/bin/env python")
     call append(1,"# -*- coding: utf-8 -*-")
     call append(2,"# vim:fenc=utf-8")
     call append(3,"#  Copyright © XYM")
-    call append(4,"# Last modified: ".strftime("%Y-%m-%d %H:%M:%S"))
+    call append(4,"# CreateTime: ".strftime("%Y-%m-%d %H:%M:%S"))
     call append(5,"")
 endf
-"更新最近修改时间和文件名
-function UpdateTitle()
-    execute '/# *Last modified:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M:%S")@'
-endfunction
-"判断前6行代码里面，是否有Last modified这个单词，
-"如果没有的话，代表没有添加过作者信息，需要新添加；
-"如果有的话，那么只需要更新即可
-function TitleDet()
-    let n=1
-    "默认为添加
-    while n < 6
-        let line = getline(n)
-        if line =~ '^\#\s*\S*Last\smodified:\S*.*$'
-            call UpdateTitle()
-            return
-        endif
-        let n = n + 1
-    endwhile
-    call AddTitle()
-endfunction
 
 let python_highlight_all = 1

@@ -19,12 +19,20 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle "scrooloose/syntastic"
 " 括号自动匹配 推荐：****
 Bundle 'jiangmiao/auto-pairs'
+" 引号处理 推荐：****
+Bundle 'tpope/vim-surround'
 " 光标多行编辑 <C-n> <C-x> <C-p> 推荐：****
 Bundle 'terryma/vim-multiple-cursors'
 " 配色主题 推荐：****
 Bundle "altercation/vim-colors-solarized"
 " 缩进引导线 推荐：****
 Bundle "nathanaelkane/vim-indent-guides"
+" 文本同级文字选取，和文本处理 推荐：****
+Bundle 'kana/vim-textobj-indent'
+Bundle 'kana/vim-textobj-user'
+" 保存vim编辑信息，比如最后的位置 推荐：****
+Bundle "vim-scripts/restore_view.vim"
+
 " 状态栏效果 推荐：***
 Bundle "bling/vim-airline"
 
@@ -33,6 +41,7 @@ Bundle 'yssource/python.vim'
 Bundle 'python_match.vim'
 Bundle 'pythoncomplete'
 Bundle 'hdima/python-syntax'
+Bundle 'hynek/vim-python-pep8-indent'
 
 " js 推荐：****
 Bundle 'elzr/vim-json'
