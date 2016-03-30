@@ -140,13 +140,11 @@ filetype plugin indent on " 自动根据类型启动对应插件，缩进开启
 
 " 设置主题,UI
 " solarized 主题
-set background=dark
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
 	let g:solarized_termcolors=256
 	let g:solarized_termtrans=1
 	let g:solarized_contrast="normal"
 	let g:solarized_visibility="normal"
-	color solarized             " Load a colorscheme
 endif
 
 
