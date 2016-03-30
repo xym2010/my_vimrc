@@ -65,6 +65,7 @@ endif
 " 设置u的返回步数限制
 if has('persistent_undo')
     set undofile               " 开启u回滚文件记录
+    set undodir=$HOME/.vim/undo "un文件的保存路径"
     set undolevels=1000         " 最大数量的改变回滚
     set undoreload=10000        " 最大数量重载可回滚行数
 endif
@@ -245,6 +246,19 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
         "funky
         nnoremap <Leader>fu :CtrlPFunky<Cr>
     endif
+endif
+
+set tags=./tags;/,~/.vimtags
+" Make tags placed in .git/tags file available in all levels of a repository
+let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+if gitroot != ''
+    let &tags = &tags . ',' . gitroot . '/.git/tags'
+endif
+au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
+nmap <Leader>ac <Plug>ToggleAutoCloseMappings
+
+if isdirectory(expand("~/.vim/bundle/tagbar/"))
+    nnoremap <silent> <leader>tt :TagbarToggle<CR>
 endif
 
 " complete
