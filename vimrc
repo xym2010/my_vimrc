@@ -105,6 +105,8 @@ cmap w!! w !sudo tee % >/dev/null
 " ,fc查找冲突的地方
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
+map <leader>nn :nohl<CR>
+
 " ,ff 查找光标后的单词位置，列出选择项
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
