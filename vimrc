@@ -107,6 +107,7 @@ map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
 map <leader>nn :nohl<CR>
 map <leader>vn :vnew<CR>
+map <leader>fe :lnext<CR>
 
 " ,ff 查找光标后的单词位置，列出选择项
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
@@ -190,9 +191,15 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 
 " syntastic 配置
 " 设置每次w保存后语法检查
-function! ToggleErrors()
-    Errors
-endfunction
+"function! ToggleErrors()
+    "Errors
+"endfunction
+
+"sudo apt-get install python3-pip
+"sudo pip3 install flake8
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_python_exec = '/usr/bin/python3'
+
 let g:syntastic_check_on_open=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -201,6 +208,10 @@ let syntastic_loc_list_height = 5
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 autocmd WinEnter * if &buftype ==#'quickfix' && winnr('$') == 1 | quit |endif
 autocmd WinLeave * lclose
+au FileType qf call AdjustWindowHeight(5, 5)
+function! AdjustWindowHeight(minheight, maxheight)
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
 
 " 自动补全tab触发
 function! InsertTabWrapper()
