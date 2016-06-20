@@ -162,12 +162,13 @@ set number " 设置行号
 hi LineNr ctermbg=black
 
 " Indent Guides 缩进列对齐线
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=black ctermbg=black
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=black
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=black ctermbg=black
+"let g:indent_guides_start_level = 2
+"let g:indent_guides_guide_size = 1
+"let g:indent_guides_enable_on_vim_startup = 1
+let g:indentLine_color_term = 239
 
 " airline 就是状态栏的箭头
 let g:airline_theme="dark"
