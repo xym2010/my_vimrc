@@ -306,3 +306,5 @@ function AddTitle()
 endf
 
 let python_highlight_all = 1
+
+let g:xptemplate_key = '<s-Tab>'
