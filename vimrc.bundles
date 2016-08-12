@@ -29,7 +29,9 @@ Bundle 'terryma/vim-multiple-cursors'
 " 配色主题 推荐：****
 Bundle "altercation/vim-colors-solarized"
 " 缩进引导线 推荐：****
-Bundle "nathanaelkane/vim-indent-guides"
+" ubuntu
+" Bundle "nathanaelkane/vim-indent-guides"  
+" mac
 Bundle "Yggdroot/indentLine"
 " 文本同级文字选取，和文本处理 推荐：****
 Bundle 'kana/vim-textobj-indent'
