@@ -43,7 +43,7 @@ set tabstop=4     " tab=4空格
 set softtabstop=4 " 回退可以删除缩进 
 set shiftwidth=4  " 缩进位宽=4个空格位
 set autoindent    " 自动缩进 
-set expandtab     " tab由空格表示
+set noexpandtab     " tab由空格表示
 
 set nojoinspaces  " 用J合并两行用一个空格隔开
 set splitright    " 用vsplit新建窗口，让新的放右边
@@ -52,7 +52,10 @@ set pastetoggle=<F12> " 指定F12进入黏贴模式，可以正常复制缩进
 set iskeyword-=.  " 让'.' 作为单词分割符
 set iskeyword-=#  " 让'#' 作为单词分割符
 set iskeyword-=-  " 让'-' 作为单词分割符
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " 空格等无效字符显示
+"set list
+"set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " 空格等无效字符显示
+"set listchars=tab:»\ ,trail:•,extends:#,nbsp:. " 空格等无效字符显示
+set listchars=tab:»-,trail:•,extends:#,nbsp:. " 空格等无效字符显示
 set textwidth=80  " 内容宽度
 set fileencodings=utf-8,gb18030,gbk,big5 " 文件编码
 
@@ -86,9 +89,9 @@ let maplocalleader = '_'    " 本地leader设置
 let g:easyWindows = 1
 if exists('g:easyWindows')
     " 向上
-    map <C-J> <C-W>j<C-W>_  
+    "map <C-J> <C-W>j<C-W>_  
     " 向下
-    map <C-K> <C-W>k<C-W>_
+    "map <C-K> <C-W>k<C-W>_
     " 向右
     map <C-L> <C-W>l<C-W>_
     " 向左
@@ -141,6 +144,7 @@ syntax on
 
 " 缩进和md文件
 filetype plugin indent on " 自动根据类型启动对应插件，缩进开启
+"filetype plugin on
 
 " 设置主题,UI
 " solarized 主题
@@ -179,7 +183,10 @@ endif
 let g:indentLine_color_term = 239
 
 " airline 就是状态栏的箭头
-let g:airline_theme="dark"
+let g:airline_theme="luna"
+"let g:airline_theme="dark"
+"let g:airline_theme= "solarized"
+set t_Co=256
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -232,7 +239,7 @@ function! InsertTabWrapper()
 	endif
 endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
+"inoremap <S-Tab> <c-n>
 
 " Ctrlp 和 Ctrlp-funky(,fu)
 if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
@@ -285,12 +292,12 @@ if isdirectory(expand("~/.vim/bundle/tagbar/"))
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
 endif
 
-" complete
-autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"" complete
+"autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 "进行版权声明的设置
 "添加或更新头
@@ -307,4 +314,28 @@ endf
 
 let python_highlight_all = 1
 
-let g:xptemplate_key = '<s-Tab>'
+"let g:xptemplate_key = '<s-Tab>'
+
+" YouCompleteMe 
+let g:ycm_python_binary_path = '/usr/bin/python'
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
+
+" Snipt
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-b>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-x>'
+
+"if : if without else
+"ife: if $1 else $2
+"eif : else if ($1) { .. }
+"el  : else ..
+"wh  : while (cond) ...
+
+" Use honza's snippets.
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+" Enable neosnippet snipmate compatibility mode
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Enable neosnippets when using go
+"let g:go_snippet_engine = "neosnippet"

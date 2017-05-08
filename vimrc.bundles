@@ -21,7 +21,13 @@ Bundle "scrooloose/syntastic"
 " 括号自动匹配 推荐：****
 Bundle 'jiangmiao/auto-pairs'
 " 自动代码块
-Bundle 'drmingdrmer/xptemplate'
+"Bundle 'drmingdrmer/xptemplate'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+
+
 " 引号处理 推荐：****
 Bundle 'tpope/vim-surround'
 " 光标多行编辑 <C-n> <C-x> <C-p> 推荐：****
@@ -42,6 +48,7 @@ Bundle "vim-scripts/restore_view.vim"
 
 " 状态栏效果 推荐：***
 Bundle "bling/vim-airline"
+Bundle 'vim-airline/vim-airline-themes'
 
 " python 推荐：****
 Bundle 'yssource/python.vim'
@@ -63,6 +70,9 @@ Bundle 'hail2u/vim-css3-syntax'
 Bundle 'gorodinskiy/vim-coloresque'
 Bundle 'tpope/vim-haml'
 Bundle 'mattn/emmet-vim'
+
+"git
+Bundle 'airblade/vim-gitgutter'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
 source ~/.vimrc.bundles.local
