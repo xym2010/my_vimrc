@@ -52,10 +52,11 @@ set pastetoggle=<F12> " 指定F12进入黏贴模式，可以正常复制缩进
 set iskeyword-=.  " 让'.' 作为单词分割符
 set iskeyword-=#  " 让'#' 作为单词分割符
 set iskeyword-=-  " 让'-' 作为单词分割符
-"set list
-"set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " 空格等无效字符显示
+set list
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " 空格等无效字符显示
 "set listchars=tab:»\ ,trail:•,extends:#,nbsp:. " 空格等无效字符显示
-set listchars=tab:»-,trail:•,extends:#,nbsp:. " 空格等无效字符显示
+"set listchars=tab:»-,trail:•,extends:#,nbsp:. " 空格等无效字符显示
+"set listchars=tab:»•,trail:•,extends:#,nbsp:. " 空格等无效字符显示
 set textwidth=80  " 内容宽度
 set fileencodings=utf-8,gb18030,gbk,big5 " 文件编码
 
@@ -336,6 +337,9 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 " Enable neosnippet snipmate compatibility mode
 let g:neosnippet#enable_snipmate_compatibility = 1
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Enable neosnippets when using go
 "let g:go_snippet_engine = "neosnippet"
