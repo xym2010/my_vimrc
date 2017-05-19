@@ -126,7 +126,14 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
-
+map <leader>' ysiw'
+map <leader>" ysiw"
+map <leader>] ysiw]
+map <leader>) ysiw)
+map <leader>k $
+map <leader>j 0
+map <leader>yk y$
+map <leader>yj y0
 " 黏贴板
 if has('clipboard')
     if has('unnamedplus')
