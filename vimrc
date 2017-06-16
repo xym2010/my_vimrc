@@ -43,7 +43,7 @@ set tabstop=4     " tab=4空格
 set softtabstop=4 " 回退可以删除缩进 
 set shiftwidth=4  " 缩进位宽=4个空格位
 set autoindent    " 自动缩进 
-set noexpandtab     " tab由空格表示
+set expandtab     " tab由空格表示
 
 set nojoinspaces  " 用J合并两行用一个空格隔开
 set splitright    " 用vsplit新建窗口，让新的放右边
